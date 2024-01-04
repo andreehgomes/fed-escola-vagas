@@ -6,6 +6,8 @@ import { Product } from "src/app/shared/model/product";
 import { LoaderService } from "src/app/components/loader/loader.service";
 import { AnalyticsService } from "src/app/shared/service/analytics/analytics.service";
 import { PromocaoEnum } from "src/app/shared/model/promocao.enum";
+import { Class } from "src/app/shared/model/new-class";
+import { ClassService } from "src/app/shared/service/class/class.service";
 
 @Component({
   selector: "app-feed",
@@ -13,14 +15,13 @@ import { PromocaoEnum } from "src/app/shared/model/promocao.enum";
   styleUrls: ["./feed.component.scss"],
 })
 export class FeedComponent implements OnInit, AfterViewInit {
-  itens: Array<Product> = [];
-  itensNatal: Array<Product> = [];
+  classes: Array<Class> = [];
   Rotas = RouterEnum;
   constructor(
     private activatedRoute: ActivatedRoute,
     private Router: Router,
     private loader: LoaderService,
-    private analytics: AnalyticsService
+    private classService: ClassService
   ) {}
 
   ngAfterViewInit(): void {
@@ -28,7 +29,30 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.getListClasses();
     console.log("FEED");
+  }
+
+  getListClasses() {
+    this.loader.openDialog();
+    this.classService.getListClasses().subscribe((classes) => {
+      this.classes = new Array<Class>();
+      if (classes.length > 0) {
+        let classLength = 0;
+        for (let clas in classes) {
+          classLength++;
+          this.classes.push(classes[clas].payload.val());
+          this.classes[clas].key = classes[clas].key;
+          if (classLength == classes.length || classLength >= classes.length) {
+            console.log(this.classes);
+            this.loader.closeDialog();
+            return;
+          }
+        }
+      } else {
+        this.loader.closeDialog();
+      }
+    });
   }
 
   goTo(Rota: string, param?: string, filtro?: string, tipo?: string) {

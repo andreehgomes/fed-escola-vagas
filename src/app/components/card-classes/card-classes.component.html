@@ -1,0 +1,39 @@
+<div class="card-class-list">
+  <div class="lista">
+    <mat-card *ngFor="let class of list">
+      <div class="dados">
+        <p>{{ class.nome }}</p>
+        <p>Turno: {{ class.turno }}</p>
+        <div class="card-vagas">
+          <div class="com-vagas">
+            <div class="title-vagas">Vagas disponíveis</div>
+            <div [class]="classVagas(class.vagas)">
+              {{ class.vagas }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="botao">
+        <div *ngIf="class.vagas < 1">
+          <p>Clique no botão abaixo para se cadastrar na lista de espera</p>
+          <button mat-raised-button color="primary" type="submit">
+            Entrar na lista de espera
+          </button>
+        </div>
+        <div>
+          <p>Clique no botão abaixo para entrar em contato com a Direção</p>
+          <button
+            id="whats"
+            *ngIf="class.vagas > 0"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
+            <a class="fa fa-whatsapp" target="_blank"></a>
+          </button>
+        </div>
+      </div>
+      <div class="acoesClasses"></div>
+    </mat-card>
+  </div>
+</div>

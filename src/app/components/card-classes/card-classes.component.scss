@@ -1,0 +1,98 @@
+@import "../../shared/style/colors";
+mat-card {
+  box-shadow: none !important;
+  margin: 5px 0px;
+  width: 100%;
+  height: max-content;
+  padding: 10px;
+  border: 1px solid #d4d4d4;
+  border-radius: 20px;
+}
+
+.card-class-list {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-between;
+}
+
+.lista {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 10px 4px;
+}
+
+.botao {
+  width: 100%;
+  max-width: 500px;
+}
+
+.botao button {
+  width: 100%;
+  margin: 5px 0px;
+}
+
+.fa-whatsapp {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+}
+
+::ng-deep .mat-raised-button.mat-primary#whats {
+  background-color: #00b800;
+}
+
+.botao div p {
+  color: gray;
+  margin-bottom: 0px;
+  font-size: 12px;
+}
+
+.dados p {
+  color: $c-primary;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.card-vagas {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.com-vagas {
+  padding: 15px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-vagas {
+  color: $c-primary;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.qtd-vagas {
+  margin: 20px;
+  color: $c-green-alert;
+  font-size: 40px;
+  font-weight: 500;
+}
+.qtd-vagas-zero {
+  margin: 20px;
+  color: $c-red-alert;
+  font-size: 40px;
+  font-weight: 500;
+}

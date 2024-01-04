@@ -44,4 +44,10 @@ export class ClassService {
         });
     });
   }
+
+  getListClasses(): Observable<any> {
+    return this.angularFireDataBase
+      .list(this.pathClass, (ref) => ref.orderByChild("nome"))
+      .snapshotChanges();
+  }
 }

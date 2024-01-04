@@ -3,3 +3,7 @@ export class NewClass {
   turno: string;
   vagas: number;
 }
+
+export class Class extends NewClass {
+  id?: string;
+}
