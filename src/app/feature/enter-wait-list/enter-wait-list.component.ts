@@ -39,10 +39,18 @@ export class EnterWaitListComponent implements OnInit {
     private laoder: LoaderService
   ) {}
 
+  43999899918;
+
   formControl = new FormGroup({
-    nome: new FormControl(null, [Validators.required]),
-    telefone: new FormControl(null, [Validators.required]),
-    vagas: new FormControl(null, [Validators.required]),
+    nome: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+    telefone: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(11),
+    ]),
+    vagas: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
   });
 
   ngOnInit(): void {
