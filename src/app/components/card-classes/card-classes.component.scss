@@ -40,6 +40,7 @@ mat-card {
 }
 
 .fa-whatsapp {
+  width: 100%;
   font-size: 24px;
   color: white;
   text-decoration: none;
@@ -95,4 +96,18 @@ mat-card {
   color: $c-red-alert;
   font-size: 40px;
   font-weight: 500;
+}
+
+.acoes-classes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.delete {
+  color: $c-red;
+}
+.edit {
+  color: $c-blue-alert;
 }

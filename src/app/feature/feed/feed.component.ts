@@ -30,7 +30,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getListClasses();
-    console.log("FEED");
   }
 
   getListClasses() {
@@ -44,7 +43,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
           this.classes.push(classes[clas].payload.val());
           this.classes[clas].key = classes[clas].key;
           if (classLength == classes.length || classLength >= classes.length) {
-            console.log(this.classes);
             this.loader.closeDialog();
             return;
           }

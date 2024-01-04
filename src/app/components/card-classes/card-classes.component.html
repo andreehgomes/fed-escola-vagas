@@ -20,20 +20,25 @@
             Entrar na lista de espera
           </button>
         </div>
-        <div>
+        <div *ngIf="class.vagas > 0">
           <p>Clique no botão abaixo para entrar em contato com a Direção</p>
-          <button
-            id="whats"
-            *ngIf="class.vagas > 0"
-            mat-raised-button
-            color="primary"
-            type="submit"
-          >
-            <a class="fa fa-whatsapp" target="_blank"></a>
+          <button id="whats" mat-raised-button color="primary">
+            <a
+              class="fa fa-whatsapp"
+              target="_blank"
+              [href]="buildLinkWhatsapp(class)"
+            ></a>
           </button>
         </div>
       </div>
-      <div class="acoesClasses"></div>
+      <div class="acoes-classes">
+        <button *ngIf="state" mat-icon-button rel="noopener noreferrer">
+          <mat-icon class="edit" (click)="edit(class)">edit</mat-icon>
+        </button>
+        <button *ngIf="state" mat-icon-button rel="noopener noreferrer">
+          <mat-icon class="delete" (click)="delet(class)">delete</mat-icon>
+        </button>
+      </div>
     </mat-card>
   </div>
 </div>

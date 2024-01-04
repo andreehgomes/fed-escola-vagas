@@ -5,5 +5,5 @@ export class NewClass {
 }
 
 export class Class extends NewClass {
-  id?: string;
+  key?: string;
 }

@@ -5,9 +5,10 @@ import { AccountService } from "src/app/shared/service/account/account.service";
 import { AlertaModel } from "src/app/shared/model/alertas-model";
 import { DateAdapter } from "@angular/material/core";
 import { RouterEnum } from "src/app/core/router/router.enum";
-import { NewClass } from "src/app/shared/model/new-class";
+import { Class, NewClass } from "src/app/shared/model/new-class";
 import { ClassService } from "src/app/shared/service/class/class.service";
 import lists from "../../shared/lists/lists.json";
+import { LoaderService } from "src/app/components/loader/loader.service";
 
 @Component({
   selector: "app-new-class",
@@ -27,11 +28,16 @@ export class NewClassComponent implements OnInit {
   };
 
   newClass: NewClass = new NewClass();
+  classEdit: Class = new Class();
+  flagEdit: boolean = false;
   mensagemRespostaCadastro: AlertaModel = new AlertaModel();
   sucesso: boolean = false;
   erro: boolean = false;
 
-  constructor(private classService: ClassService, private datePipe: DatePipe) {}
+  constructor(
+    private classService: ClassService,
+    private laoder: LoaderService
+  ) {}
 
   formControlnewClass = new FormGroup({
     nome: new FormControl(null, [Validators.required]),
@@ -39,7 +45,9 @@ export class NewClassComponent implements OnInit {
     vagas: new FormControl(null, [Validators.required]),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buildFormEdit();
+  }
 
   onSubmit() {
     const { nome, turno, vagas } = this.formControlnewClass.controls;
@@ -50,23 +58,56 @@ export class NewClassComponent implements OnInit {
       vagas: vagas.value,
     };
 
-    this.classService.insertNewClass(this.newClass).subscribe((res) => {
-      this.classService.responseInsertNewClass.subscribe((mensagem) => {
-        this.mensagemRespostaCadastro = mensagem;
-
-        if (this.mensagemRespostaCadastro) {
-          if (this.mensagemRespostaCadastro.codigo == "200") {
-            this.sucesso = true;
-            this.erro = false;
-          } else if (this.mensagemRespostaCadastro.codigo == "500") {
-            this.erro = true;
-            this.sucesso = false;
-          }
-        }
+    if (!this.flagEdit) {
+      this.classService.insertNewClass(this.newClass).subscribe((res) => {
+        this.afterSubmit();
+        this.zerarForm();
       });
-    });
+    } else {
+      this.classService
+        .updateClass(this.classEdit.key, this.newClass)
+        .subscribe((res) => {
+          this.afterSubmit();
+          this.zerarForm();
+          this.laoder.closeDialog();
+        });
+    }
+  }
 
-    this.zerarForm();
+  afterSubmit() {
+    this.classService.responseInsertNewClass.subscribe((mensagem) => {
+      this.mensagemRespostaCadastro = mensagem;
+
+      if (this.mensagemRespostaCadastro) {
+        if (this.mensagemRespostaCadastro.codigo == "200") {
+          this.sucesso = true;
+          this.erro = false;
+        } else if (this.mensagemRespostaCadastro.codigo == "500") {
+          this.erro = true;
+          this.sucesso = false;
+        }
+      }
+    });
+  }
+
+  buildFormEdit() {
+    this.laoder.openDialog();
+    this.classService.behaviorClasses.subscribe((clas) => {
+      if (clas) {
+        this.flagEdit = true;
+        this.classEdit = clas;
+        this.formControlnewClass.controls["nome"].setValue(this.classEdit.nome);
+        this.formControlnewClass.controls["turno"].setValue(
+          this.classEdit.turno
+        );
+        this.formControlnewClass.controls["vagas"].setValue(
+          this.classEdit.vagas
+        );
+        this.laoder.closeDialog();
+      } else {
+        this.laoder.closeDialog();
+      }
+    });
   }
 
   zerarForm() {
@@ -77,13 +118,8 @@ export class NewClassComponent implements OnInit {
     }
     this.formControlnewClass = new FormGroup({
       nome: new FormControl(null, [Validators.required]),
-      dataNascimento: new FormControl(null, [Validators.required]),
-      novaSenha: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-      celular: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required]),
+      turno: new FormControl(null, [Validators.required]),
+      vagas: new FormControl(null, [Validators.required]),
     });
   }
 }
