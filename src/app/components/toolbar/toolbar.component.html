@@ -1,0 +1,80 @@
+<div class="header">
+  <mat-sidenav-container class="sidenav-container" autosize>
+    <mat-sidenav
+      #sidenav
+      class="example-sidenav"
+      mode="side"
+      [opened]="openSideNav"
+    >
+      <mat-nav-list>
+        <mat-list-item class="parent" (click)="home()">
+          <span class="full-width">Home</span>
+          <mat-icon mat-list-icon>home</mat-icon>
+        </mat-list-item>
+        <mat-list-item
+          *ngIf="state"
+          class="parent"
+          (click)="goTo(routes.NEW_CLASS)"
+        >
+          <span class="full-width">Nova turma</span>
+          <mat-icon mat-list-icon>post_add</mat-icon>
+        </mat-list-item>
+        <mat-list-item
+          *ngIf="state"
+          class="parent"
+          (click)="goTo(routes.REDEFINE_PASSWORD)"
+        >
+          <span class="full-width">Alterar Senha</span>
+          <mat-icon mat-list-icon>key</mat-icon>
+        </mat-list-item>
+        <mat-list-item
+          *ngIf="!state"
+          class="parent"
+          (click)="logout(routes.LOGIN)"
+        >
+          <span class="full-width">Entrar</span>
+          <mat-icon mat-list-icon>login</mat-icon>
+        </mat-list-item>
+        <mat-list-item
+          *ngIf="state"
+          class="parent"
+          (click)="logout(routes.DEFAULT)"
+        >
+          <span class="full-width">Sair</span>
+          <mat-icon mat-list-icon>logout</mat-icon>
+        </mat-list-item>
+        <mat-list-item class="parent">
+          <div class="sobre">
+            <p>Desenvolvido por</p>
+            <p>ANDRÉ GOMES</p>
+            <button mat-icon-button rel="noopener noreferrer">
+              <a
+                class="fa fa-whatsapp"
+                [href]="buildLinkWhatsapp()"
+                target="_blank"
+              ></a>
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
+
+  <div class="fechaMenu" *ngIf="openSideNav" (click)="openCloseSideNav()"></div>
+
+  <mat-toolbar>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="openCloseSideNav()"
+    >
+      <mat-icon class="pink-icon">menu</mat-icon>
+    </button>
+    <!-- <div class="saudacao-usuario">
+      <p class="nome">Sandra Cosméticos</p>
+      <p>{{ labelComponente }}</p>
+    </div>
+    <span class="spacer"></span> -->
+  </mat-toolbar>
+</div>

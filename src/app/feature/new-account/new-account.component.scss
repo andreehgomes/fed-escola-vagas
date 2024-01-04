@@ -1,0 +1,81 @@
+@import "../../shared/style/colors";
+.content {
+  max-width: 500px;
+  height: 100vh;
+  border-radius: 4px;
+  background-color: white;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.containers {
+  width: 100%;
+  min-height: 15%;
+  background-color: white;
+  display: flex;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 95%;
+  width: 100%;
+  padding: 10px 0;
+  max-height: 70%;
+}
+
+.example-full-width {
+  position: relative;
+  width: 100%;
+  // z-index: 3;
+}
+
+div ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #ffffff;
+}
+
+.botao {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+a {
+  margin-top: 20px;
+}
+
+mat-card {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-status-verde {
+  background: $c-green-alert-light;
+  color: $c-green-alert;
+  border-color: $c-green-alert-border;
+}
+.card-status-vermelho {
+  background: $c-red-alert-light;
+  color: $c-red-alert;
+  border-color: $c-red-alert-border;
+}
+
+h1 {
+  color: $c-brown-saudacao;
+  font-weight: 400;
+  font-size: 12pt;
+  margin: 0;
+}
+
+.title {
+  margin-top: 10px;
+  margin-left: 120px;
+  max-width: 95%;
+  width: 100%;
+  padding: 5px;
+  align-items: flex-start;
+}

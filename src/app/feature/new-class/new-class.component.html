@@ -1,0 +1,71 @@
+<div class="content">
+  <app-toolbar
+    style="width: 55px"
+    class="containers"
+    [usuario]="usuario"
+  ></app-toolbar>
+
+  <div class="title">
+    <h1>Adicionar Turma</h1>
+  </div>
+
+  <div *ngIf="mensagemRespostaCadastro?.codigo != null" class="example-form">
+    <card-alert
+      *ngIf="mensagemRespostaCadastro?.codigo != null"
+      tipo="{{ mensagemRespostaCadastro.tipo }}"
+      codigo="{{ mensagemRespostaCadastro.codigo }}"
+      mensagem="{{ mensagemRespostaCadastro.mensagem }}"
+    ></card-alert>
+  </div>
+
+  <form
+    [formGroup]="formControlnewClass"
+    (ngSubmit)="onSubmit()"
+    class="example-form"
+    #formDirective="ngForm"
+  >
+    <mat-form-field
+      color="primary"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Nome da Turma</mat-label>
+      <input matInput formControlName="nome" matInput />
+    </mat-form-field>
+    <mat-form-field color="accent" class="example-full-width" appearance="fill">
+      <mat-label>Período / Turno</mat-label>
+      <mat-select formControlName="turno">
+        <mat-option *ngFor="let turno of turnosList" [value]="turno">
+          {{ turno }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      color="primary"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Quantidade de vagas</mat-label>
+      <input type="number" matInput formControlName="vagas" matInput />
+    </mat-form-field>
+    <div class="botao">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="formControlnewClass.invalid"
+      >
+        Salvar
+      </button>
+      <a
+        mat-stroked-button
+        color="_blank"
+        color="primary"
+        type="button"
+        (click)="zerarForm()"
+        >Cancelar</a
+      >
+    </div>
+  </form>
+  <app-footer [rotaBotaoHome]="route.FEED" class="containers"></app-footer>
+</div>

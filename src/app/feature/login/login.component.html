@@ -1,0 +1,69 @@
+<div class="content">
+  <mat-card class="card">
+    <div class="card-container">
+      <div class="logo">
+        <img
+          style="border-radius: 10px"
+          src="../../../assets/imagens/logo.png"
+          width="60%"
+          alt="Logo Sandra Cosmeticos"
+        />
+      </div>
+      <div class="example-form card-alert">
+        <card-alert
+          *ngIf="mensagemRespostaLogin?.codigo != null"
+          tipo="{{ mensagemRespostaLogin.tipo }}"
+          codigo="{{ mensagemRespostaLogin.codigo }}"
+          mensagem="{{ mensagemRespostaLogin.mensagem }}"
+        ></card-alert>
+      </div>
+      <form
+        #form="ngForm"
+        [formGroup]="formControlUsuario"
+        (ngSubmit)="onSubmitLogin()"
+        class="example-form"
+      >
+        <!-- <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Celular</mat-label>
+            <input
+              formControlName="celularFormGroup"
+              type="tel"
+              matInput
+              placeholder="00 00000-00"
+            />
+          </mat-form-field> -->
+        <mat-form-field
+          class="example-full-width"
+          appearance="fill"
+          color="primary"
+        >
+          <mat-label>E-mail</mat-label>
+          <input formControlName="emailFormGroup" type="text" matInput />
+        </mat-form-field>
+        <mat-form-field
+          class="example-full-width"
+          appearance="fill"
+          color="primary"
+        >
+          <mat-label>Senha</mat-label>
+          <input formControlName="senhaFormGroup" type="password" matInput />
+        </mat-form-field>
+        <div class="botao">
+          <button mat-raised-button color="primary" type="submit">
+            Entrar
+          </button>
+          <a
+            mat-stroked-button
+            target="_blank"
+            color="primary"
+            (click)="newPassword()"
+            >Esqueci minha senha</a
+          >
+          <a mat-stroked-button target="_blank" color="link" (click)="feed()"
+            >Continuar</a
+          >
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

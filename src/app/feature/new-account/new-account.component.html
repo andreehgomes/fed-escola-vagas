@@ -1,0 +1,127 @@
+<div class="content">
+  <app-toolbar
+    style="width: 55px"
+    class="containers"
+    [usuario]="usuario"
+  ></app-toolbar>
+
+  <div class="title">
+    <h1>Nova conta</h1>
+  </div>
+
+  <div class="example-form">
+    <card-alert
+      *ngIf="mensagemRespostaCadastro?.codigo != null"
+      tipo="{{ mensagemRespostaCadastro.tipo }}"
+      codigo="{{ mensagemRespostaCadastro.codigo }}"
+      mensagem="{{ mensagemRespostaCadastro.mensagem }}"
+    ></card-alert>
+  </div>
+
+  <form
+    [formGroup]="formControlNewAccount"
+    (ngSubmit)="onSubmit()"
+    class="example-form"
+    #formDirective="ngForm"
+  >
+    <mat-form-field
+      color="primary"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Nome completo</mat-label>
+      <input matInput formControlName="nome" matInput />
+    </mat-form-field>
+    <mat-form-field
+      color="primary"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Celular</mat-label>
+      <input
+        matInput
+        formControlName="celular"
+        type="tel"
+        matInput
+        placeholder="00 00000-00"
+      />
+    </mat-form-field>
+    <mat-form-field
+      color="primary"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>email</mat-label>
+      <input matInput formControlName="email" type="text" matInput />
+    </mat-form-field>
+    <mat-form-field
+      color="primary"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Data de Nascimento</mat-label>
+      <!-- <input matInput formControlName="dataNascimento" type="date" matInput placeholder="00/00/0000" /> -->
+      <input
+        matInput
+        formControlName="dataNascimento"
+        [matDatepicker]="datepicker"
+      />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="datepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #datepicker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancelar</button>
+          <button mat-raised-button color="primary" matDatepickerApply>
+            Aplicar
+          </button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field
+      color="primary"
+      class="example-full-width"
+      appearance="fill"
+    >
+      <mat-label>Nova senha</mat-label>
+      <input
+        formControlName="novaSenha"
+        [type]="hide ? 'password' : 'text'"
+        matInput
+      />
+      <mat-hint align="start">A senha deve conter no mínimo 6 digitos</mat-hint>
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon fontIcon="home">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="botao">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="formControlNewAccount.invalid"
+      >
+        Salvar
+      </button>
+      <a
+        mat-stroked-button
+        color="_blank"
+        color="primary"
+        type="button"
+        (click)="zerarForm()"
+        >Cancelar</a
+      >
+    </div>
+  </form>
+  <app-footer [rotaBotaoHome]="route.LOGIN" class="containers"></app-footer>
+</div>

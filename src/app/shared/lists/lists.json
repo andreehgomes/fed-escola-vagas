@@ -1,0 +1,4 @@
+{
+  "turnosFiltro": ["TODOS", "MANHÃ", "TARDE"],
+  "turnosCadastro": ["MANHÃ", "TARDE"]
+}
