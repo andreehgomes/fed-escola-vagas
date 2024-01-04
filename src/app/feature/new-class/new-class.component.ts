@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { DatePipe } from "@angular/common";
 import { FormControl, FormGroup, Validators, NgForm } from "@angular/forms";
 import { AccountService } from "src/app/shared/service/account/account.service";
@@ -15,7 +15,7 @@ import { LoaderService } from "src/app/components/loader/loader.service";
   templateUrl: "./new-class.component.html",
   styleUrls: ["./new-class.component.scss"],
 })
-export class NewClassComponent implements OnInit {
+export class NewClassComponent implements OnInit, OnDestroy {
   route = RouterEnum;
   turnosList = lists.turnosCadastro;
 
@@ -38,6 +38,10 @@ export class NewClassComponent implements OnInit {
     private classService: ClassService,
     private laoder: LoaderService
   ) {}
+
+  ngOnDestroy(): void {
+    this.classService.behaviorClasses.next(null);
+  }
 
   formControlnewClass = new FormGroup({
     nome: new FormControl(null, [Validators.required]),
