@@ -9,4 +9,5 @@ export enum RouterEnum {
   PARAM_KEY = "key",
   REDEFINE_PASSWORD = "redefine-password",
   ENTER_WAIT_LIST = "enter-wait-list",
+  WAIT_LIST = "wait-list",
 }

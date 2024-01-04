@@ -41,6 +41,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: "wait-list",
+    loadChildren: () =>
+      import("../app/feature/wait-list/wait-list.module").then(
+        (m) => m.WaitListModule
+      ),
+  },
+  {
     path: "",
     loadChildren: () =>
       import("../app/feature/feed/feed.module").then((m) => m.FeedModule),

@@ -1,0 +1,35 @@
+<div class="content">
+  <app-toolbar
+    style="width: 55px"
+    class="containers"
+    [usuario]="usuario"
+  ></app-toolbar>
+  <div class="title">
+    <h1>Lista de espera</h1>
+    <p>{{ clas.nome }} - {{ clas.turno }}</p>
+    <p>Vagas Disponíves - {{ clas.vagas }}</p>
+  </div>
+  <div class="lista-vagas">
+    <div class="card-lista-espera" *ngFor="let espera of clas.listaDeEspera">
+      <p>Nome: {{ espera.nome }}</p>
+      <p>Telefone: {{ espera.telefone }}</p>
+      <p>Quantidade de vagas: {{ espera.vagas }}</p>
+
+      <div class="acoes-classes">
+        <button mat-icon-button rel="noopener noreferrer">
+          <a
+            class="fa fa-whatsapp"
+            [href]="buildLinkWhatsapp(espera.telefone)"
+            target="_blank"
+          ></a>
+        </button>
+        <button mat-icon-button rel="noopener noreferrer">
+          <mat-icon class="delete" (click)="deteleEspera(espera)"
+            >delete</mat-icon
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+  <app-footer [rotaBotaoHome]="route.FEED" class="containers"></app-footer>
+</div>

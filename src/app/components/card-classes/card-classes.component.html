@@ -38,6 +38,11 @@
       </div>
       <div class="acoes-classes">
         <button *ngIf="state" mat-icon-button rel="noopener noreferrer">
+          <mat-icon class="list-ico" (click)="seeWaitList(class)"
+            >list</mat-icon
+          >
+        </button>
+        <button *ngIf="state" mat-icon-button rel="noopener noreferrer">
           <mat-icon class="edit" (click)="edit(class)">edit</mat-icon>
         </button>
         <button *ngIf="state" mat-icon-button rel="noopener noreferrer">

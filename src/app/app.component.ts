@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("APP COMPONENT");
     this.initiByStorage();
   }
 
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit {
         this.goTo(href);
       });
     } else {
+      console.log("INIT BY STORAGE => ELSE");
       this.anonimousAutenticate().subscribe((res) => {
         this.goTo(href);
       });

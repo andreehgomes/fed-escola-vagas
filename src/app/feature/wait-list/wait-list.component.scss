@@ -1,0 +1,75 @@
+@import "../../shared/style/colors";
+.content {
+  max-width: 500px;
+  height: max-content;
+  border-radius: 4px;
+  background-color: white;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+}
+
+.containers {
+  width: 100%;
+  min-height: 15%;
+  background-color: white;
+  display: flex;
+}
+
+.title {
+  max-width: 95%;
+  width: 75%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 0 55px;
+  align-self: flex-start;
+}
+
+.title h1 {
+  font-size: 20px !important;
+  margin: 0;
+}
+
+.title p {
+  margin: 0;
+}
+
+.card-lista-espera {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.lista-vagas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.delete {
+  color: $c-red;
+}
+
+.fa-whatsapp {
+  font-size: 24px;
+  color: #00b800;
+  text-decoration: none;
+}
+
+.acoes-classes {
+  border-top: 1px solid #d4d4d4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}

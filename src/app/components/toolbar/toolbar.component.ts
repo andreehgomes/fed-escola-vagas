@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { InitAuthService } from "src/app/core/base-auth/init-auth.service";
 import { RouterEnum } from "src/app/core/router/router.enum";
 import { RouterService } from "src/app/core/router/router.service";
+import { LoginService } from "src/app/feature/login/shared/service/login.service";
 import { AuthStateService } from "src/app/shared/service/authState/auth-state.service";
 
 @Component({
@@ -21,7 +22,8 @@ export class ToolbarComponent implements OnInit {
   constructor(
     private router: RouterService,
     private auth: InitAuthService,
-    private authState: AuthStateService
+    private authState: AuthStateService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {

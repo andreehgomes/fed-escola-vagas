@@ -8,6 +8,7 @@ import { AnalyticsService } from "src/app/shared/service/analytics/analytics.ser
 import { PromocaoEnum } from "src/app/shared/model/promocao.enum";
 import { Class } from "src/app/shared/model/new-class";
 import { ClassService } from "src/app/shared/service/class/class.service";
+import { LoginService } from "../login/shared/service/login.service";
 
 @Component({
   selector: "app-feed",
@@ -21,7 +22,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private Router: Router,
     private loader: LoaderService,
-    private classService: ClassService
+    private classService: ClassService,
+    private loginService: LoginService
   ) {}
 
   ngAfterViewInit(): void {
@@ -29,6 +31,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    const token = localStorage.getItem("token");
+    if (!token) this.loginService.siginAnonimous();
     this.getListClasses();
   }
 

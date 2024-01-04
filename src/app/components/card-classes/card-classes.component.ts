@@ -39,6 +39,12 @@ export class CardClassesComponent implements OnInit {
   delet(clas: Class) {
     this.classService.deleteClass(clas.key).subscribe(() => {});
   }
+
+  seeWaitList(clas: Class) {
+    this.classService.behaviorClasses.next(clas);
+    this.goTo(RouterEnum.WAIT_LIST);
+  }
+
   goTo(rota: string) {
     this.router.navigate([rota]);
   }
