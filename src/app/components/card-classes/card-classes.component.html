@@ -16,7 +16,12 @@
       <div class="botao">
         <div *ngIf="class.vagas < 1">
           <p>Clique no botão abaixo para se cadastrar na lista de espera</p>
-          <button mat-raised-button color="primary" type="submit">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="enterWaitList(class)"
+          >
             Entrar na lista de espera
           </button>
         </div>

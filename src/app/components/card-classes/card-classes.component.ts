@@ -43,6 +43,11 @@ export class CardClassesComponent implements OnInit {
     this.router.navigate([rota]);
   }
 
+  enterWaitList(clas: Class) {
+    this.classService.behaviorClasses.next(clas);
+    this.goTo(RouterEnum.ENTER_WAIT_LIST);
+  }
+
   buildLinkWhatsapp(clas: Class) {
     const quebraLinha = "%0A";
     const espaco = "%20";

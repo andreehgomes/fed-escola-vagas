@@ -3,7 +3,7 @@ import { RouterService } from "../app/core/router/router.service";
 import { LoginService } from "./feature/login/shared/service/login.service";
 import { InitAuthService } from "./core/base-auth/init-auth.service";
 import { AlertaModel } from "./shared/model/alertas-model";
-import { Subscription, Observable } from "rxjs";
+import { Subscription, Observable, observable } from "rxjs";
 import { PayloadLogin } from "./feature/login/shared/model/payload-login";
 import { ResponseLogin } from "./feature/login/shared/model/response-login";
 import { ActivatedRoute } from "@angular/router";
@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   mensagemRespostaLogin: AlertaModel = new AlertaModel();
   subscribeLogin: Subscription = new Subscription(null);
   subscribeMensagem: Subscription = new Subscription(null);
-
   constructor(
     private router: RouterService,
     private service: LoginService,
@@ -29,12 +28,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.goTo(RouterEnum.FEED);
-    // this.initiByStorage();
+    this.initiByStorage();
   }
 
   initiByStorage() {
-    const href = window.location.href.includes(RouterEnum.NEW_ACCOUNT);
+    const href = window.location.href.includes(RouterEnum.NEW_ACCOUNT)
+      ? RouterEnum.NEW_ACCOUNT
+      : RouterEnum.FEED;
     const usuario = this.auth.getToken();
     if (usuario) {
       this.autenticarWithEmail({
@@ -44,7 +44,9 @@ export class AppComponent implements OnInit {
         this.goTo(href);
       });
     } else {
-      this.goTo(href);
+      this.anonimousAutenticate().subscribe((res) => {
+        this.goTo(href);
+      });
     }
   }
   autenticarWithEmail(payload: PayloadLogin): Observable<any> {
@@ -74,7 +76,16 @@ export class AppComponent implements OnInit {
     });
   }
 
+  anonimousAutenticate() {
+    return new Observable((observer) => {
+      this.service.siginAnonimous().then(() => {
+        observer.next();
+      });
+    });
+  }
+
   goTo(param) {
     if (!param) this.router.navigate(this.router.route.FEED);
+    else this.router.navigate(param);
   }
 }

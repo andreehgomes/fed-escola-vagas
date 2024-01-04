@@ -10,6 +10,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   ) {}
 
   handleError(error: any): void {
+    console.log("HANDLER ERROR: ", error);
     const mensagem1 = "Desulpe pelo ocorrido.";
     const mensagem2 = "Tente novamente mais tarde.";
     let mensagemTecnica = error;

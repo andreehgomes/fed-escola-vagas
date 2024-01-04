@@ -3,7 +3,7 @@ import { AngularFireDatabase, QueryFn } from "@angular/fire/database";
 import { BehaviorSubject, Observable } from "rxjs";
 import { AlertaModel } from "../../model/alertas-model";
 import { LoaderService } from "src/app/components/loader/loader.service";
-import { Class, NewClass } from "../../model/new-class";
+import { Class, EnterWaitList, NewClass } from "../../model/new-class";
 import { AlertasType } from "../../model/alertas-type.enum";
 
 @Injectable({
@@ -93,6 +93,41 @@ export class ClassService {
           throw new Error(
             "Erro ao tentar excluir o produto. Tente novamente mais tarde!"
           );
+        });
+    });
+  }
+
+  enterWaitList(
+    key: string,
+    clas: NewClass,
+    enterWaitList: EnterWaitList
+  ): Observable<any> {
+    return new Observable((observer) => {
+      this.loader.openDialog();
+      console.log("CLASS: ", clas);
+      clas.listaDeEspera
+        ? clas.listaDeEspera.push(enterWaitList)
+        : (clas.listaDeEspera = [enterWaitList]);
+      this.angularFireDataBase
+        .list(this.pathClass)
+        .update(key, clas)
+        .then((update) => {
+          console.log(update);
+          this.responseInsertNewClass.next({
+            codigo: "200",
+            mensagem: `Seu nome está na lista de espera para a turma do(a) ${clas.nome.toLocaleUpperCase()} no turno da ${clas.turno.toLocaleUpperCase()}. A direção da escola entrará em contato assim que abrir uma vaga. Lembrando que as vagas são preenchidas por ordem de cadastro.`,
+            tipo: AlertasType.SUCESSO,
+          });
+          observer.next();
+        })
+        .catch((error) => {
+          this.responseInsertNewClass.next({
+            codigo: error.code,
+            mensagem:
+              "Erro ao entrar na lista de espera. Tente novamente em instantes.",
+            tipo: AlertasType.ERRO,
+          });
+          observer.next();
         });
     });
   }
