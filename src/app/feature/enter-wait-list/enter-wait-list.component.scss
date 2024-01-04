@@ -1,0 +1,165 @@
+@import "../../shared/style/colors";
+.content {
+  max-width: 500px;
+  height: max-content;
+  border-radius: 4px;
+  background-color: white;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.containers {
+  width: 100%;
+  min-height: 15%;
+  background-color: white;
+  display: flex;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 95%;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 15px;
+}
+
+.example-full-width {
+  position: relative;
+  width: 100%;
+  // z-index: 3;
+}
+
+div ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #ffffff;
+}
+
+.title {
+  max-width: 95%;
+  width: 100%;
+  padding: 5px;
+  align-items: flex-start;
+}
+
+.title h1 {
+  font-size: 20px !important;
+  margin: 0 0 0 60px;
+}
+
+.botao {
+  width: 100%;
+  max-width: 500px;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 150px;
+}
+
+.addImage {
+  width: auto;
+  aspect-ratio: 1/1;
+}
+
+.image .botaoAdd {
+  position: absolute;
+  z-index: 1;
+  top: 75%;
+  left: 84%;
+  padding: 0;
+  border: 0 none;
+  margin: -15px;
+}
+
+.header {
+  position: fixed;
+  z-index: 998;
+  width: 100%;
+  padding: 15px;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: $c-brown-background;
+}
+
+img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 0 3px;
+}
+
+a {
+  margin-top: 20px;
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}
+
+mat-icon {
+  color: white;
+}
+
+.listaTamanho {
+  // width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+.item {
+  margin: 2px;
+  padding: 2px;
+  border: 1px solid #ff4081;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  align-items: center;
+}
+
+.item p {
+  margin: 0;
+}
+
+.carrocelImagem {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow: scroll;
+  background-color: white;
+}
+
+.btnAndImg {
+  padding: 0 2px;
+  aspect-ratio: 1/1;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.btnAndImg mat-icon {
+  position: relative;
+  z-index: 1;
+  top: 8%;
+  left: -10%;
+  padding: 0;
+  border: 0 none;
+  margin: -15px;
+}

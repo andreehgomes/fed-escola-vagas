@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PayloadLogin } from "../model/payload-login";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { AccountService } from "src/app/shared/service/account/account.service";
 import { ResponseLogin } from "../model/response-login";
@@ -64,6 +64,20 @@ export class LoginService {
           mensagem: "E-mail ou senha incorretos!!",
         });
         this.loader.closeDialog();
+      });
+  }
+
+  async siginAnonimous() {
+    this.loader.openDialog();
+    this.angularFireAuth
+      .signInAnonymously()
+      .then((res) => {
+        console.log("anonimous login: ", res);
+      })
+      .catch((error) => {
+        throw new Error(
+          "Erro ao tentar excluir o produto. Tente novamente mais tarde!"
+        );
       });
   }
 }
