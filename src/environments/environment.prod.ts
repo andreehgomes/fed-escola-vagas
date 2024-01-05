@@ -9,5 +9,5 @@ export const environment = {
     appId: "1:938523814062:web:c91cf9fe767568d42d653f",
     measurementId: "G-J3P7HZQG9R",
   },
-  celNumber: "43999899918",
+  celNumber: "43991694032",
 };
